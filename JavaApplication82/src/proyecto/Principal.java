@@ -4,6 +4,8 @@
  */
 package proyecto;
 
+import Visual.VentanaPrincipal;
+
 /**
  *
  * @author Ema
@@ -14,7 +16,8 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        VentanaPrincipal pantalla = new VentanaPrincipal();
+        pantalla.setVisible(true);
     }
     
 }
