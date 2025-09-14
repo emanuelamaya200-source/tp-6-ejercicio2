@@ -60,6 +60,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuConsulta.setText("Consultas");
 
         jMenuConsultaNombre.setText("Consulta por Nombre");
+        jMenuConsultaNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConsultaNombreActionPerformed(evt);
+            }
+        });
         jMenuConsulta.add(jMenuConsultaNombre);
 
         jMenuConsultaPrecio.setText("Consulta por Precio");
@@ -85,6 +90,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConsultaNombreActionPerformed
+
+    }//GEN-LAST:event_jMenuConsultaNombreActionPerformed
 
     /**
      * @param args the command line arguments
