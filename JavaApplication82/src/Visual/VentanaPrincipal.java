@@ -31,14 +31,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jDialog1 = new javax.swing.JDialog();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdm = new javax.swing.JMenu();
         btnGestion = new javax.swing.JMenuItem();
         jMenuConsulta = new javax.swing.JMenu();
-        jMenuConsultaNombre = new javax.swing.JMenu();
-        jMenuConsultaPrecio = new javax.swing.JMenu();
-        jMenuConsultaRubro = new javax.swing.JMenu();
+        btnNombre = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         menuSalir = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -52,6 +53,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        jMenuItem3.setText("jMenuItem3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,19 +74,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenuConsulta.setText("Consultas");
 
-        jMenuConsultaNombre.setText("Consulta por Nombre");
-        jMenuConsultaNombre.addActionListener(new java.awt.event.ActionListener() {
+        btnNombre.setText("Consulta por Nombre");
+        btnNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuConsultaNombreActionPerformed(evt);
+                btnNombreActionPerformed(evt);
             }
         });
-        jMenuConsulta.add(jMenuConsultaNombre);
+        jMenuConsulta.add(btnNombre);
 
-        jMenuConsultaPrecio.setText("Consulta por Precio");
-        jMenuConsulta.add(jMenuConsultaPrecio);
+        jMenuItem4.setText("Consulta por Precio");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenuConsulta.add(jMenuItem4);
 
-        jMenuConsultaRubro.setText("Consulta por Rubro");
-        jMenuConsulta.add(jMenuConsultaRubro);
+        jMenuItem2.setText("Consulta por Rubro");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuConsulta.add(jMenuItem2);
 
         jMenuBar1.add(jMenuConsulta);
 
@@ -120,10 +133,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuConsultaNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConsultaNombreActionPerformed
-
-    }//GEN-LAST:event_jMenuConsultaNombreActionPerformed
-
     private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
 
     }//GEN-LAST:event_menuSalirActionPerformed
@@ -137,6 +146,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        jLabel2.add(gestion1);
        gestion1.setVisible(true);
     }//GEN-LAST:event_btnGestionActionPerformed
+
+    private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
+        PanelNombre nombre1 = new PanelNombre();
+        jLabel2.add(nombre1);
+        nombre1.setVisible(true);
+    }//GEN-LAST:event_btnNombreActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        PanelPrecio1 precio1 = new PanelPrecio1();
+        jLabel2.add(precio1);
+        precio1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+      PanelRubro1 rubro1 = new PanelRubro1();
+        jLabel2.add(rubro1);
+        rubro1.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,15 +192,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnGestion;
+    private javax.swing.JMenuItem btnNombre;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuAdm;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsulta;
-    private javax.swing.JMenu jMenuConsultaNombre;
-    private javax.swing.JMenu jMenuConsultaPrecio;
-    private javax.swing.JMenu jMenuConsultaRubro;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenu menuSalir;
     // End of variables declaration//GEN-END:variables
