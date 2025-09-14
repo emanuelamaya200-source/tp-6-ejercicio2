@@ -34,6 +34,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdm = new javax.swing.JMenu();
+        btnGestion = new javax.swing.JMenuItem();
         jMenuConsulta = new javax.swing.JMenu();
         jMenuConsultaNombre = new javax.swing.JMenu();
         jMenuConsultaPrecio = new javax.swing.JMenu();
@@ -57,6 +58,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/fondoSuper.jpg"))); // NOI18N
 
         jMenuAdm.setText("Administracion");
+
+        btnGestion.setText("Gestion de Productos");
+        btnGestion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGestionActionPerformed(evt);
+            }
+        });
+        jMenuAdm.add(btnGestion);
+
         jMenuBar1.add(jMenuAdm);
 
         jMenuConsulta.setText("Consultas");
@@ -122,6 +132,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void btnGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionActionPerformed
+        GestionDeProductos gestion1 = new GestionDeProductos();
+       jLabel2.add(gestion1);
+       gestion1.setVisible(true);
+    }//GEN-LAST:event_btnGestionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -148,6 +164,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnGestion;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuAdm;
