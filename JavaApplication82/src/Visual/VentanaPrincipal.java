@@ -14,7 +14,7 @@ import proyecto.Producto;
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
-        private TreeSet<Producto> productos = new TreeSet<>();
+        static TreeSet<Producto> productos = new TreeSet<>();
   
     public VentanaPrincipal() {
         initComponents();
