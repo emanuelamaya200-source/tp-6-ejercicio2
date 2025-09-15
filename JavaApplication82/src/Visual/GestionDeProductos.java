@@ -7,6 +7,7 @@ package Visual;
 import java.util.TreeSet;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import proyecto.Producto;
 
@@ -73,6 +74,8 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     jTable1.setModel(modelo);
 }
 
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -398,10 +401,10 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
  
         int codigoEliminar = Integer.parseInt(codigoStr);
         
-        // 3. Crea un objeto Producto temporal para usar en el método remove() del TreeSet
+
         Producto producto = new Producto(codigoEliminar, null, 0, null, 0);
         
-        // 4. Intenta eliminar el producto
+
         if (productos.remove(producto)) {
             JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.");
             llenarTablas(); // Actualiza la tabla
@@ -415,7 +418,10 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        // TODO add your handling code here:
+        txtCodigo.setText("");
+        txtDescripcion.setText("");
+        txtPrecio.setText("");
+        jSpinner1.setValue(0);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
