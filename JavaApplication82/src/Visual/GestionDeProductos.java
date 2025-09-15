@@ -391,21 +391,32 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-          int codigo = Integer.parseInt(txtCodigo.getText());
-         String categoria = (String) cmb2.getSelectedItem();
-         
-         try {
-            Double precio = Double.parseDouble(txtPrecio.getText());
-            Integer stock = Integer.parseInt(txtPrecio.getText());
-            String descripcion = txtDescripcion.getText();
-            Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, stock);
-            productos.add(nuevoProducto);
-            llenarTablas();
-             JOptionPane.showMessageDialog(this, "Producto Agregado Correctamente :)");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ingrese numeros en precio!!" ,"Error", JOptionPane.ERROR_MESSAGE);
+    try {
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        String categoria = (String) cmb2.getSelectedItem();
+        Double precio = Double.parseDouble(txtPrecio.getText());
+        Integer stock = (Integer) jSpinner1.getValue(); 
+        String descripcion = txtDescripcion.getText();
+
+        Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, stock);
+        
+
+        if (productos.add(nuevoProducto)) {
+            JOptionPane.showMessageDialog(this, "Producto Agregado Correctamente :)");
+            llenarTablas(); // Actualiza la tabla después de agregar
+        } else {
+            // El método .add() retorna false si el elemento ya existe
+            JOptionPane.showMessageDialog(this, "El producto con este código ya existe.", "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-                     
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El código, precio y stock deben ser números.", "Error de Formato", JOptionPane.ERROR_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+       
+
        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
