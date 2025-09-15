@@ -6,6 +6,7 @@ package Visual;
 
 import java.util.TreeSet;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import proyecto.Producto;
 
@@ -18,7 +19,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
    JComboBox<String> categorias = new JComboBox<>();
    String[][]Tablas;
 
-    public GestionDeProductos(TreeSet<Producto> productos) {
+    public GestionDeProductos(TreeSet<Producto> productos)  {
         initComponents();
         this.productos = productos;
         cargarCategoriasPredeterminadas();
@@ -33,6 +34,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     categorias.addItem("Perfumeria");    
     
     CmbCategoria.setModel(categorias.getModel());
+    cmb2.setModel(categorias.getModel());
     }
        
            public void cargarProductosDeterminados(){
@@ -104,7 +106,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
         txtPrecio = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmb2 = new javax.swing.JComboBox<>();
         jSpinner1 = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
 
@@ -203,8 +205,6 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumeria" }));
-
         jDesktopPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -213,7 +213,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
         jDesktopPane2.setLayer(txtPrecio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(txtCodigo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(txtDescripcion, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane2.setLayer(jComboBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane2.setLayer(cmb2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jSpinner1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
@@ -235,7 +235,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
                             .addComponent(txtPrecio)
                             .addComponent(txtCodigo)
                             .addComponent(txtDescripcion)
-                            .addComponent(jComboBox2, 0, 214, Short.MAX_VALUE)
+                            .addComponent(cmb2, 0, 214, Short.MAX_VALUE)
                             .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -257,7 +257,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
                 .addGap(14, 14, 14)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmb2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -391,7 +391,22 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+          int codigo = Integer.parseInt(txtCodigo.getText());
+         String categoria = (String) cmb2.getSelectedItem();
+         
+         try {
+            Double precio = Double.parseDouble(txtPrecio.getText());
+            Integer stock = Integer.parseInt(txtPrecio.getText());
+            String descripcion = txtDescripcion.getText();
+            Producto nuevoProducto = new Producto(codigo, descripcion, precio, categoria, stock);
+            productos.add(nuevoProducto);
+            llenarTablas();
+             JOptionPane.showMessageDialog(this, "Producto Agregado Correctamente :)");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese numeros en precio!!" ,"Error", JOptionPane.ERROR_MESSAGE);
+        }
+                     
+       
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -418,8 +433,8 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalirGestion;
+    private javax.swing.JComboBox<String> cmb2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel jLabel1;

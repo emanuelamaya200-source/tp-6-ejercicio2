@@ -311,7 +311,7 @@
                                       <Component id="txtPrecio" max="32767" attributes="0"/>
                                       <Component id="txtCodigo" max="32767" attributes="0"/>
                                       <Component id="txtDescripcion" max="32767" attributes="0"/>
-                                      <Component id="jComboBox2" alignment="0" pref="214" max="32767" attributes="0"/>
+                                      <Component id="cmb2" alignment="0" pref="214" max="32767" attributes="0"/>
                                       <Component id="jSpinner1" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -341,7 +341,7 @@
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmb2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -388,14 +388,10 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtDescripcion">
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox2">
+                <Component class="javax.swing.JComboBox" name="cmb2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Comestible"/>
-                        <StringItem index="1" value="Limpieza"/>
-                        <StringItem index="2" value="Perfumeria"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
