@@ -4,6 +4,7 @@
  */
 package Visual;
 
+import java.awt.BorderLayout;
 import java.util.TreeSet;
 import proyecto.Producto;
 
@@ -15,13 +16,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
         static TreeSet<Producto> productos = new TreeSet<>();
+        
+    //atributos de tipo clase
+        private GestionDeProductos gestion1;
+        private PanelPrecio1 precio1;
   
     public VentanaPrincipal() {
-        initComponents();
-        setLocationRelativeTo(this);
-        
-        
-    }
+    initComponents();
+    setLocationRelativeTo(null);
+
+    // inicializar
+    gestion1 = new GestionDeProductos(this.productos);
+    precio1 = new PanelPrecio1();
+
+    jLabel2.setLayout(new BorderLayout());
+    jLabel2.add(gestion1, BorderLayout.NORTH);
+    jLabel2.add(precio1, BorderLayout.CENTER);
+
+    jLabel2.revalidate();
+    jLabel2.repaint();
+
+    gestion1.llenarTablas();
+    precio1.mostrarSegunPreciosElejidos();
+}
+
+
     
     
 
@@ -147,8 +166,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionActionPerformed
-        GestionDeProductos gestion1 = new GestionDeProductos(this.productos);
-       jLabel2.add(gestion1);
+        
        gestion1.setVisible(true);
     }//GEN-LAST:event_btnGestionActionPerformed
 
@@ -159,8 +177,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNombreActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        PanelPrecio1 precio1 = new PanelPrecio1();
-        jLabel2.add(precio1);
+        
         precio1.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
