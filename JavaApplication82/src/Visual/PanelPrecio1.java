@@ -192,111 +192,116 @@ public class PanelPrecio1 extends javax.swing.JInternalFrame {
     private void jtminKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtminKeyReleased
     
         productosamostrarminimo = 0; 
-  
-    for (Producto producto : VentanaPrincipal.productos) {
-        double precio = producto.getPrecio();
-        int preciomin = Integer.parseInt(jtmin.getText().trim());
         
-        if (preciomin <= precio) { productosamostrarminimo++; }            
-    }           
+    if (!jtmin.getText().trim().isEmpty()) {
+        int preciomin = Integer.parseInt(jtmin.getText().trim());
+        for (Producto producto : VentanaPrincipal.productos) {
+            double precio = producto.getPrecio();
+            if (preciomin <= precio) { 
+                productosamostrarminimo++; 
+            }            
+        }
+    }
     mostrarSegunPreciosElejidos();
     }//GEN-LAST:event_jtminKeyReleased
 
     private void jtmaxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtmaxKeyReleased
-        productosamostrarmaximo = 0; 
-  
-    for (Producto producto : VentanaPrincipal.productos) {
-        double precio = producto.getPrecio();
-        int preciomax = Integer.parseInt(jtmax.getText().trim()); // ✅ corregido
-        
-        if (preciomax >= precio) { productosamostrarmaximo++; }           
+         productosamostrarmaximo = 0; 
+         
+    if (!jtmax.getText().trim().isEmpty()) {
+        int preciomax = Integer.parseInt(jtmax.getText().trim());
+        for (Producto producto : VentanaPrincipal.productos) {
+            double precio = producto.getPrecio();
+            if (precio <= preciomax) {  
+                productosamostrarmaximo++; 
+            }           
+        }
     }
     mostrarSegunPreciosElejidos();
     }//GEN-LAST:event_jtmaxKeyReleased
     public void mostrarSegunPreciosElejidos(){
-    int totalamostrar = productosamostrarmaximo + productosamostrarminimo;
-    
     String[][] Tablas;
     String[] columnas = {"Codigo", "Descripcion" ,"Precio", "Categoria" ,"Stock"};
     
     //si los dos estan vacios
     if (jtmin.getText().trim().isEmpty() && jtmax.getText().trim().isEmpty()) {
-        
         Tablas = new String[VentanaPrincipal.productos.size()][5];
         int f = 0;
         for (Producto producto : VentanaPrincipal.productos) {                      
-            for (int c = 0; c < 5; c++) {
-                //codigo de int a string
-                String cod = String.valueOf(producto.getCodigo());
-                if (c == 0) { Tablas[f][c] = cod; }
-                if (c == 1) { Tablas[f][c] = producto.getDescripcion(); }
-                if (c == 2) { Tablas[f][c] = String.valueOf(producto.getPrecio()); }
-                if (c == 3) { Tablas[f][c] = producto.getCategoria(); }
-                if (c == 4) { Tablas[f][c] = String.valueOf(producto.getStock()); }
-            }
-            f++;    
+            Tablas[f][0] = String.valueOf(producto.getCodigo());
+            Tablas[f][1] = producto.getDescripcion();
+            Tablas[f][2] = String.valueOf(producto.getPrecio());
+            Tablas[f][3] = producto.getCategoria();
+            Tablas[f][4] = String.valueOf(producto.getStock());
+            f++;
         }
         JTable tabla = new JTable(Tablas, columnas);        
         jtprecio.setModel(tabla.getModel()); 
     }
-    
     //solo mostrar minimo    
-    if (!jtmin.getText().trim().isEmpty() && jtmax.getText().trim().isEmpty()) {
-        //pasar numero minimo a int
+    else if (!jtmin.getText().trim().isEmpty() && jtmax.getText().trim().isEmpty()) {
         int numerominimo = Integer.parseInt(jtmin.getText().trim());
-        // iniciar tablas
-        Tablas = new String[totalamostrar][5];
-        
-        //filas
+        Tablas = new String[productosamostrarminimo][5];
         int f = 0;
-        for (Producto producto : VentanaPrincipal.productos) {           
-            for (int c = 0; c < 5; c++) {
-                //codigo de int a string
-                if (numerominimo <= producto.getPrecio()) {
-                    String cod = String.valueOf(producto.getCodigo());
-                    if (c == 0) { Tablas[f][c] = cod; }
-                    if (c == 1) { Tablas[f][c] = producto.getDescripcion(); }
-                    if (c == 2) { Tablas[f][c] = String.valueOf(producto.getPrecio()); }
-                    if (c == 3) { Tablas[f][c] = producto.getCategoria(); }
-                    if (c == 4) { Tablas[f][c] = String.valueOf(producto.getStock()); }
-                }
+        for (Producto producto : VentanaPrincipal.productos) {
+            if (numerominimo <= producto.getPrecio()) {
+                Tablas[f][0] = String.valueOf(producto.getCodigo());
+                Tablas[f][1] = producto.getDescripcion();
+                Tablas[f][2] = String.valueOf(producto.getPrecio());
+                Tablas[f][3] = producto.getCategoria();
+                Tablas[f][4] = String.valueOf(producto.getStock());
+                f++;
             }
-            f++;
-        }           
+        }
         JTable tabla = new JTable(Tablas, columnas);        
         jtprecio.setModel(tabla.getModel());   
-    }   
-    
+    }
+    //solo mostrar máximo
+    else if (jtmin.getText().trim().isEmpty() && !jtmax.getText().trim().isEmpty()) {
+        int numeromaximo = Integer.parseInt(jtmax.getText().trim());
+        Tablas = new String[productosamostrarmaximo][5];
+        int f = 0;
+        for (Producto producto : VentanaPrincipal.productos) {
+            if (producto.getPrecio() <= numeromaximo) {
+                Tablas[f][0] = String.valueOf(producto.getCodigo());
+                Tablas[f][1] = producto.getDescripcion();
+                Tablas[f][2] = String.valueOf(producto.getPrecio());
+                Tablas[f][3] = producto.getCategoria();
+                Tablas[f][4] = String.valueOf(producto.getStock());
+                f++;
+            }
+        }
+        JTable tabla = new JTable(Tablas, columnas);        
+        jtprecio.setModel(tabla.getModel());
+    }
     //mostrar minimo y maximo
-    if (!jtmin.getText().trim().isEmpty() && !jtmax.getText().trim().isEmpty()) { // ✅ corregido
-        
-        //pasar numero minimo y maximo a int
+    else {
         int numerominimo = Integer.parseInt(jtmin.getText().trim());
         int numeromaximo = Integer.parseInt(jtmax.getText().trim());
-        // iniciar tablas
-        Tablas = new String[totalamostrar][5];
         
-        //filas
-        int f = 0;
-        for (Producto producto : VentanaPrincipal.productos) {           
-            for (int c = 0; c < 5; c++) {
-                //codigo de int a string
-                if (numerominimo <= producto.getPrecio() && producto.getPrecio() <= numeromaximo) { // ✅ corregido
-                    String cod = String.valueOf(producto.getCodigo());
-                    if (c == 0) { Tablas[f][c] = cod; }
-                    if (c == 1) { Tablas[f][c] = producto.getDescripcion(); }
-                    if (c == 2) { Tablas[f][c] = String.valueOf(producto.getPrecio()); }
-                    if (c == 3) { Tablas[f][c] = producto.getCategoria(); }
-                    if (c == 4) { Tablas[f][c] = String.valueOf(producto.getStock()); }
-                }
+        int count = 0;
+        for (Producto producto : VentanaPrincipal.productos) {
+            if (numerominimo <= producto.getPrecio() && producto.getPrecio() <= numeromaximo) {
+                count++;
             }
-            f++;
-        }           
+        }
+        
+        Tablas = new String[count][5];
+        int f = 0;
+        for (Producto producto : VentanaPrincipal.productos) {
+            if (numerominimo <= producto.getPrecio() && producto.getPrecio() <= numeromaximo) {
+                Tablas[f][0] = String.valueOf(producto.getCodigo());
+                Tablas[f][1] = producto.getDescripcion();
+                Tablas[f][2] = String.valueOf(producto.getPrecio());
+                Tablas[f][3] = producto.getCategoria();
+                Tablas[f][4] = String.valueOf(producto.getStock());
+                f++;
+            }
+        }
         JTable tabla = new JTable(Tablas, columnas);        
         jtprecio.setModel(tabla.getModel());   
     }
-    
-    }
+}
 
 
     
