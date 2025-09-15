@@ -4,6 +4,9 @@
  */
 package Visual;
 
+import java.util.TreeSet;
+import proyecto.Producto;
+
 /**
  *
  * @author user
@@ -11,14 +14,16 @@ package Visual;
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName());
-
-    /**
-     * Creates new form VentanaPrincipal
-     */
+        private TreeSet<Producto> productos = new TreeSet<>();
+  
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(this);
+        
+        
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -142,7 +147,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void btnGestionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionActionPerformed
-        GestionDeProductos gestion1 = new GestionDeProductos();
+        GestionDeProductos gestion1 = new GestionDeProductos(this.productos);
        jLabel2.add(gestion1);
        gestion1.setVisible(true);
     }//GEN-LAST:event_btnGestionActionPerformed

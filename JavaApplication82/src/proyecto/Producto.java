@@ -5,20 +5,21 @@
 package proyecto;
 
 //comestible, limpieza y perfumería son los únicos permitidos
-public class Producto {
+
+import java.util.Objects;
+
+public class Producto  implements Comparable<Producto> {
     private String rubro;
-    private String nombre;
-    private int precio;
+    private double precio;
     private int codigo;
     private String descripcion;
     private int stock;
 
-    public Producto(String rubro, String nombre, int precio, int codigo, String descripcion, int stock) {
-        this.rubro = rubro;
-        this.nombre = nombre;
-        this.precio = precio;
+    public Producto( int codigo, String descripcion, double precio, String rubro, int stock) {
         this.codigo = codigo;
         this.descripcion = descripcion;
+        this.precio = precio;
+        this.rubro = rubro;
         this.stock = stock;
     }
 
@@ -30,19 +31,12 @@ public class Producto {
         this.rubro = rubro;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
@@ -70,9 +64,31 @@ public class Producto {
         this.stock = stock;
     }
 
+    
+    
     @Override
     public String toString() {
-        return "Productos: " + "rubro: " + rubro + " nombre: " + nombre + " precio: " + precio + " codigo: " + codigo + " descripcion: " + descripcion + " stock: " + stock;
+        return "Producto{" + "codigo=" + codigo +", descripcion=" + descripcion + ", precio=" + precio  + "rubro=" + rubro + "stock=" + stock + '}';
+    }
+
+  
+     @Override
+    public int compareTo(Producto otroProducto) {
+        return Integer.compare(this.codigo, otroProducto.codigo);
     }
     
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Producto producto = (Producto) o;
+        return codigo == producto.codigo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codigo);
+    }
+
 }
