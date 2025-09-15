@@ -383,7 +383,35 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirGestionActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+
+    int filaSeleccionada = jTable1.getSelectedRow();
+    
+    if (filaSeleccionada == -1) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar un producto para eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
+    try {
+
+        String codigoStr = jTable1.getValueAt(filaSeleccionada, 0).toString();
+        
+ 
+        int codigoEliminar = Integer.parseInt(codigoStr);
+        
+        // 3. Crea un objeto Producto temporal para usar en el método remove() del TreeSet
+        Producto producto = new Producto(codigoEliminar, null, 0, null, 0);
+        
+        // 4. Intenta eliminar el producto
+        if (productos.remove(producto)) {
+            JOptionPane.showMessageDialog(this, "Producto eliminado exitosamente.");
+            llenarTablas(); // Actualiza la tabla
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontro el producto a eliminar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "El código del producto no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
