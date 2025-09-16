@@ -74,7 +74,30 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     jTable1.setModel(modelo);
 }
 
+public void llenarTablasPorCategoria(String categoria) {
+    DefaultTableModel modelo = new DefaultTableModel(
+        new Object[]{"Codigo", "Descripcion", "Precio", "Rubro", "Stock"}, 0
+    );
 
+
+    for (Producto producto : productos) {
+
+        if (producto.getRubro().equalsIgnoreCase(categoria)) {
+
+            Object[] fila = {
+                producto.getCodigo(),
+                producto.getDescripcion(),
+                producto.getPrecio(),
+                producto.getRubro(),
+                producto.getStock()
+            };
+            modelo.addRow(fila);
+        }
+    }
+    
+
+    jTable1.setModel(modelo);
+}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -455,7 +478,7 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
+       llenarTablas();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
@@ -463,7 +486,16 @@ public class GestionDeProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+    String categoriaSeleccionada = (String) CmbCategoria.getSelectedItem();
+    
+
+    if ("Todos".equalsIgnoreCase(categoriaSeleccionada)) {
+        llenarTablas();
+    } else {
+
+        llenarTablasPorCategoria(categoriaSeleccionada);
+    }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CmbCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbCategoriaActionPerformed

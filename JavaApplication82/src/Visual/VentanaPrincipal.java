@@ -172,7 +172,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGestionActionPerformed
 
     private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
-        PanelNombre nombre1 = new PanelNombre();
+        PanelNombre nombre1 = new PanelNombre(productos);
         jLabel2.add(nombre1);
         nombre1.setVisible(true);
     }//GEN-LAST:event_btnNombreActionPerformed
