@@ -5,6 +5,7 @@
 package Visual;
 
 import java.awt.BorderLayout;
+import java.util.List;
 import java.util.TreeSet;
 import proyecto.Producto;
 
@@ -183,6 +184,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
       PanelRubro1 rubro1 = new PanelRubro1();
+       jLabel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 0));
         jLabel2.add(rubro1);
         rubro1.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -227,4 +229,5 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JMenu menuSalir;
     // End of variables declaration//GEN-END:variables
+
 }
